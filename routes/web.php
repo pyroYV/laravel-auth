@@ -28,6 +28,6 @@ Route::middleware('auth')
         ->group(function(){
             route::get('/','HomeController@index')->name('home');
 
-            Route::resource('/posts', 'Admin\PostController');
+            Route::resource('/posts', 'PostController');
         });
 
