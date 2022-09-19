@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'Admin\HomeController@index')->name('home');
+Route::resource('/posts', 'Admin\PostController');
