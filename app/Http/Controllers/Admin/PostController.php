@@ -47,8 +47,7 @@ class PostController extends Controller
         $newPost = new Post();
         $newPost->post_author = Auth::user()->name;
         $newPost->post_creation_date = new DateTime();
-        $newPost->fill($data);
-        $newPost->save();
+        $newPost->create($data);
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
@@ -73,7 +72,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findorFail($id);
+        return view('admin.posts.edit',compact('post'));
     }
 
     /**
@@ -86,6 +86,11 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $sentData = $request->all();
+        $post = Post::findorFail($id);
+        $post->update($sentData);
+
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -97,5 +102,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::findorFail($id);
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }

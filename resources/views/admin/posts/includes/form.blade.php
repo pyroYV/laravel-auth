@@ -10,8 +10,8 @@
     @enderror
     <div class="mb-3">
         <label for="content" class="form-label">Post Content</label>
-        <textarea type="text"  cols="30" rows="10" class="form-control" id="content" value="{{old('contet',$post->post_content )}}"
-            name="post_content"> </textarea>
+        <textarea type="text"  cols="30" rows="10" class="form-control" id="content" value=""
+            name="post_content"> {{old('contet', $post->post_content )}}</textarea>
     </div>
     @error('content')
     <div class="alert alert-danger">
